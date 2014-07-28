@@ -28,3 +28,12 @@ Play frameworkのプロジェクト中からは、ReloadableClassLoaderをベー
 ただし、"sbt start"で実行した場合には、ClassLoaderが一種類しか生成されないため上記の問題は発生しなくなります。  
 また、sbt上の.dependsOnで依存を指定した場合も、上記の問題は発生しなくなります。
 
+
+#解決方法
+
+GoodWayToGetMirrorに定義しているように
+
+* Thread.currentThread.getContextLoaderからMirrorを作る
+* 渡されたTypeTagのmirrorを引き回す
+
+などの方法があります。基本的には前者をおすすめします。
